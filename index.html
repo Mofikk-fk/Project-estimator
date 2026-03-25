@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Project Estimator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1><i class="fas fa-briefcase"></i> Freelance Project Estimator</h1>
+        <p>Calculate project costs, timelines, and earnings with platform deductions</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Column: Form Section -->
+        <div class="form-section">
+            <div class="card">
+                <h2><i class="fas fa-clipboard"></i> Add New Phase</h2>
+
+                <!-- Error Messages -->
+                <div id="errorMessage" class="error-message"></div>
+
+                <!-- Form -->
+                <form id="phaseForm" class="form-group">
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="phaseName">Phase Name</label>
+                            <input type="text" id="phaseName" placeholder="e.g., Design, Development" required>
+                        </div>
+                        <div class="form-column">
+                            <label for="hours">Hours</label>
+                            <input type="number" id="hours" placeholder="e.g., 40" min="1" step="0.5" required>
+                        </div>
+                        <div class="form-column">
+                            <label for="rate">Rate (₦/hr)</label>
+                            <input type="number" id="rate" placeholder="e.g., 50" min="1" step="0.01" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Phase</button>
+                </form>
+            </div>
+
+            <!-- Settings Card -->
+            <div class="card">
+                <h2><i class="fas fa-gear"></i> Project Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="platformFee">Platform Fee (%)</label>
+                        <input type="number" id="platformFee" placeholder="e.g., 10" min="0" max="100" step="0.1"
+                            value="10">
+                    </div>
+                    <div class="setting-item">
+                        <label for="hoursPerDay">Hours per Day</label>
+                        <input type="number" id="hoursPerDay" placeholder="e.g., 8" min="1" max="24" step="0.5"
+                            value="8">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Display Sections -->
+        <div class="display-section">
+            <!-- Phases List -->
+            <div class="card">
+                <h2><i class="fas fa-notepad"></i> Project Phases</h2>
+                <div id="phasesList" class="phases-list">
+                    <p class="empty-state">No phases added yet. Add a phase to get started!</p>
+                </div>
+            </div>
+
+            <!-- Totals & Calculations -->
+            <div class="card totals-card">
+                <h2><i class="fas fa-money-bag"></i> Financial Summary</h2>
+                <div class="totals-grid">
+                    <div class="total-item">
+                        <span class="total-label">Total Hours</span>
+                        <span class="total-value" id="totalHours">0</span>
+                    </div>
+                    <div class="total-item">
+                        <span class="total-label">Total Cost</span>
+                        <span class="total-value currency" id="totalCost">0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span class="total-label">Platform Fee</span>
+                        <span class="total-value currency fee" id="totalFee">0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span class="total-label">Your Earnings</span>
+                        <span class="total-value currency earnings" id="finalEarnings">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Estimation -->
+            <div class="card">
+                <h2><i class="fas fa-calendar"></i> Timeline Estimate</h2>
+                <div class="timeline-result">
+                    <div class="timeline-item">
+                        <span class="timeline-label">Estimated Days</span>
+                        <span class="timeline-value" id="estimatedDays">0</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-label">Estimated Weeks</span>
+                        <span class="timeline-value" id="estimatedWeeks">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="card actions-card">
+                <button id="clearAllBtn" class="btn btn-danger btn-full"><i class="fas fa-trash"></i> Clear All
+                    Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><i class="fas fa-lightbulb"></i> Tip: Your data is automatically saved to your browser. All calculations
+            update in real-time.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
